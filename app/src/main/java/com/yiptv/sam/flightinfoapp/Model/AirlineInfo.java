@@ -5,7 +5,7 @@ package com.yiptv.sam.flightinfoapp.Model;
  */
 public class AirlineInfo {
 
-    private String Clazz;
+    private String __clazz;
     private String code;
     private String defaultName;
     private String logoURL;
@@ -22,8 +22,8 @@ public class AirlineInfo {
     }
 
 
-    public AirlineInfo(String Clazz, String code, String defaultName, String logoURL, String name, String phone, String site, String usName) {
-        this.Clazz = Clazz;
+    public AirlineInfo(String __clazz, String code, String defaultName, String logoURL, String name, String phone, String site, String usName) {
+        this.__clazz = __clazz;
         this.code = code;
         this.defaultName = defaultName;
         this.logoURL = logoURL;
@@ -34,13 +34,13 @@ public class AirlineInfo {
     }
 
 
-    public String getClazz() {
-        return Clazz;
+    public String get__clazz() {
+        return __clazz;
     }
 
 
-    public void setClazz(String Clazz) {
-        this.Clazz = Clazz;
+    public void set__clazz(String Clazz) {
+        this.__clazz = Clazz;
     }
 
 

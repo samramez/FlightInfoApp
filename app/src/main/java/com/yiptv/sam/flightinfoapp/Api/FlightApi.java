@@ -16,7 +16,7 @@ public interface FlightApi {
      */
 
     @GET("airlines")
-    Call<AirlineInfo> getWeatherForName();
+    Call<AirlineInfo> getAirlineInfo();
 
 }
 

@@ -10,14 +10,14 @@ import retrofit.Retrofit;
 /**
  * Created by Sam on 5/1/16.
  */
-public class FlightInfoService {
+public class AirlineInfoService {
 
     private FlightApi flightApi;
 
-    private static final String BASE_URL = "https://www.kayak.com/h/mobileapis/directory/";
+    private static final String BASE_URL = "http://www.kayak.com/h/mobileapis/directory";
 
 
-    public FlightInfoService() {
+    public AirlineInfoService() {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -29,7 +29,7 @@ public class FlightInfoService {
     }
 
     public void getFlightInfo(Callback callback){
-        flightApi.getWeatherForName().enqueue(callback);
+        flightApi.getAirlineInfo().enqueue(callback);
     }
 
 
