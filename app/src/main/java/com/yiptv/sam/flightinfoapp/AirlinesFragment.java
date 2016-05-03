@@ -37,13 +37,13 @@ public class AirlinesFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
+
         mRecyclerView = (RecyclerView) view.findViewById(R.id.airlineRecyclerView);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setHasFixedSize(true);
         mAirlineInfoService = new AirlineInfoService();
-        mRecyclerView.setAdapter(new AirlineRecyclerAdapter(view.getContext(),null));
+        //mRecyclerView.setAdapter(new AirlineRecyclerAdapter(view.getContext(),null));
         getAirlineInfo();
     }
 
@@ -54,6 +54,7 @@ public class AirlinesFragment extends Fragment {
                 @Override
                 public void onResponse(Response<List<AirlineInfo>> response) {
 
+                    //Log.e("###########",response.errorBody().toString());
                     List<AirlineInfo> airlineInfo = response.body();
                     mAdapter = new AirlineRecyclerAdapter(getActivity(),airlineInfo);
                     mRecyclerView.setAdapter(mAdapter);
@@ -64,7 +65,6 @@ public class AirlinesFragment extends Fragment {
                 public void onFailure(Throwable t) {
 
                     Toast.makeText(getActivity(),"Failure" , Toast.LENGTH_LONG).show();
-
                 }
             });
         } catch (Exception e) {

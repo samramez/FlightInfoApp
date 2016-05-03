@@ -2,6 +2,8 @@ package com.yiptv.sam.flightinfoapp.Api;
 
 import com.yiptv.sam.flightinfoapp.Model.AirlineInfo;
 
+import java.util.List;
+
 import retrofit.Call;
 import retrofit.http.GET;
 
@@ -16,7 +18,7 @@ public interface FlightApi {
      */
 
     @GET("airlines")
-    Call<AirlineInfo> getAirlineInfo();
+    Call<List<AirlineInfo>> getAirlineInfo();
 
 }
 

@@ -43,13 +43,10 @@ public class AirlineRecyclerAdapter extends RecyclerView.Adapter<CustomViewHolde
         .into(holder.airlineImageView);
 
         holder.airlineTextView.setText(airlineInfo.getName());
-
-
-
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mAirlineInfoList.size();
     }
 }
