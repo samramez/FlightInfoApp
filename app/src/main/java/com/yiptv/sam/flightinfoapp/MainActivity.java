@@ -1,10 +1,14 @@
 package com.yiptv.sam.flightinfoapp;
 
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,10 +27,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         showAirlinesFragment();
 
-//        FragmentManager fm = getSupportFragmentManager();
-//        FragmentTransaction ft = fm.beginTransaction();
-//        ft.add(R.id.airlineListFragment, new AirlinesFragment() );
-//        ft.commit();
+
+        if(!isNetworkAvailable()){
+            Toast.makeText(this,"Please connect to Internet and Try again",Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -70,5 +74,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
