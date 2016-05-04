@@ -1,5 +1,6 @@
 package com.yiptv.sam.flightinfoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.yiptv.sam.flightinfoapp.Model.AirlineInfo;
 import com.yiptv.sam.flightinfoapp.Service.AirlineInfoService;
 import com.yiptv.sam.flightinfoapp.Utils.AirlineRecyclerAdapter;
+import com.yiptv.sam.flightinfoapp.Utils.RecyclerItemClickListener;
 
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class AirlinesFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setHasFixedSize(true);
         mAirlineInfoService = new AirlineInfoService();
-        //mRecyclerView.setAdapter(new AirlineRecyclerAdapter(view.getContext(),null));
+//        mRecyclerView.setAdapter(new AirlineRecyclerAdapter(view.getContext(),null));
         getAirlineInfo();
     }
 
@@ -55,10 +57,33 @@ public class AirlinesFragment extends Fragment {
                 public void onResponse(Response<List<AirlineInfo>> response) {
 
                     //Log.e("###########",response.errorBody().toString());
-                    List<AirlineInfo> airlineInfo = response.body();
+                    final List<AirlineInfo> airlineInfo = response.body();
                     mAdapter = new AirlineRecyclerAdapter(getActivity(),airlineInfo);
                     mRecyclerView.setAdapter(mAdapter);
                     Toast.makeText(getActivity(),"Success" , Toast.LENGTH_LONG).show();
+
+                    mRecyclerView.addOnItemTouchListener(
+                            new RecyclerItemClickListener(getActivity(),
+                                    mRecyclerView,
+                                    new RecyclerItemClickListener.OnItemClickListener() {
+
+                                        @Override
+                                        public void onItemClick(View view, int position) {
+
+                                            airlineInfo.get(position).getLogoURL();
+                                            Intent myIntent = new Intent(getActivity(), DetailActivity.class);
+                                            myIntent.putExtra("image", airlineInfo.get(position).getLogoURL() );
+                                            myIntent.putExtra("name", airlineInfo.get(position).getName() );
+                                            myIntent.putExtra("website", airlineInfo.get(position).getSite() );
+                                            myIntent.putExtra("phone", airlineInfo.get(position).getPhone() );
+                                            getActivity().startActivity(myIntent);
+
+                                            //Toast.makeText(getActivity(),"Success" , Toast.LENGTH_LONG).show();
+
+
+                                        }
+                                    }));
+
                 }
 
                 @Override
