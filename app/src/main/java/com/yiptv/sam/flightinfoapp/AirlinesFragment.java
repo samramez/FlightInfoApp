@@ -60,7 +60,7 @@ public class AirlinesFragment extends Fragment {
                     final List<AirlineInfo> airlineInfo = response.body();
                     mAdapter = new AirlineRecyclerAdapter(getActivity(),airlineInfo);
                     mRecyclerView.setAdapter(mAdapter);
-                    Toast.makeText(getActivity(),"Success" , Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getActivity(),"Success" , Toast.LENGTH_LONG).show();
 
                     mRecyclerView.addOnItemTouchListener(
                             new RecyclerItemClickListener(getActivity(),
